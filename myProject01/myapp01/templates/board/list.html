@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h3>LIST</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>번호</th>
+                <th>제목</th>
+                <th>작성자</th>
+                <th>작성일</th>
+                <th>조회수</th>
+                <th>첨부파일</th>
+                <th>파일이미지</th>
+                <th>다운로드</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for board in boardList %}
+            <tr>
+                <td>{{board.idx}}</td>
+                <td><a href="/detail_idx?idx={{board.idx}}">{{board.title}}</a>
+                    //
+                    <a href="/detail/{{board.idx}}">{{board.title}}</a>
+
+                </td>
+                <td>{{board.writer}}</td>
+                <td>{{board.post_date}}</td>
+                <td>{{board.hit}}</td>
+                <td>{{board.filename}}</td>
+                <td>
+                    {% if board.filesize > 0 %}
+                    <span class="_imgs">
+                        <img src="{% static 'images/file.jpg' %}">
+                    </span>
+
+                    {% endif %}
+
+                </td>
+                <td>{{board.down}}</td>
+            </tr>
+
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+
+</html>

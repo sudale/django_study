@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h3>수정 폼</h3>
+    <form action="/update/" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="idx" value="{{dto.idx}}" />
+        writer: <input type="text" name="writer" value="{{dto.writer}}"><br />
+        title: <input type="text" name="title" value="{{dto.title}}"><br />
+        content: <textarea name="content" rows="5" cols="50">{{dto.content}}</textarea><br />
+        file: <input type="file" name="file">{{dto.filename}}<br />
+        <input type="submit" value="수정하기">
+    </form>
+</body>
+
+</html>
