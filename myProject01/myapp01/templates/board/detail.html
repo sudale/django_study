@@ -18,7 +18,37 @@
     date : {{dto.post_date}} <br />
     file : {{dto.filename}} <br /><br />
 
-    <a href="/update_form/{{dto.idx}}">수정</a> <a href="/delete/{{dto.idx}}">삭제</a>
+    <a href="/update_form/{{dto.idx}}">수정</a>
+    <a href="/delete/{{dto.idx}}">삭제</a>
+
+    <br /><br />
+    <h4>Comment</h4>
+    <form action="/comment_insert/" method="post">
+        <input type="hidden" name="idx" value="{{dto.idx}}" />
+        <textarea name="content" rows="5" cols="50" placeholder="Comment Insert"></textarea>
+        <input type="submit" value="전송" />
+    </form>
+
+    <table>
+        <thead>
+            <tr>
+                <th>작성자</th>
+                <th>작성일</th>
+                <th>내용</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for comment in commentList %}
+            <tr>
+                <td>{{comment.writer}}</td>
+                <td>{{comment.post_date}}</td>
+                <td>{{comment.content}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
 </body>
 
 </html>
