@@ -10,7 +10,7 @@ from requests import post
 from myapp01.models import Board, Comment
 
 # Create your views here.
-UPLOAD_DIR = 'C:\\djangostudy\\upload'
+UPLOAD_DIR = 'C:\\djangostudy\\upload\\'
 
 # write_form
 
@@ -91,7 +91,7 @@ def list(request):
     endPage = startPage + blockPage - 1
 
     if endPage > totPage:
-        endpage = totPage  # endPage = 7
+        endPage = totPage  # endPage = 7
 
     # 검색내용
     if field == 'all':

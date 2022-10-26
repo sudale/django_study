@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <h3>상세보기</h3>
+    <table class="table table-hover">
+        <tr>
+            <th>아이디</th>
+            <td colspan="3">{{dto.id}}</td>
+        </tr>
+        <tr>
+            <th>조회수</th>
+            <td colspan="3">{{dto.hit}}</td>
+        </tr>
+        <tr>
+            <th>작성자</th>
+            <td colspan="3">{{dto.writer}}</td>
+        </tr>
+        <tr>
+            <th>제목</th>
+            <td colspan="3">{{dto.title}}</td>
+        </tr>
+        <tr>
+            <th>내용</th>
+            <td colspan="3">{{dto.content}}</td>
+        </tr>
+        <tr>
+            <th>date</th>
+            <td colspan="3">{{dto.post_date | date:'Y-m-d'}}</td>
+        </tr>
+        <tr>
+            <th>file</th>
+            <td colspan="3">{{dto.filename}}</td>
+        </tr>
+    </table>
+    <a href="/update_form/{{dto.idx}}">수정</a>
+    <a href="/delete/{{dto.idx}}">삭제</a>
+</div>
+{% endblock %}
