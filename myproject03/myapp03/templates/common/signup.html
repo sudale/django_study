@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <h2>회원가입</h2>
+    <form method="post">
+        {% csrf_token %}
+        {% include "form_errors.html" %}
+        <div class="form-group">
+            <label for="username">사용자이름:</label>
+            <input type="text" class="form-control" id="username" placeholder="Enter username" name="username"
+                value="{{forms.username.value|default_if_none:''}}">
+        </div>
+        <div class="form-group">
+            <label for="password1">비밀번호:</label>
+            <input type="password" class="form-control" id="password1" placeholder="Enter password" name="password1"
+                value="{{forms.password1.value|default_if_none:''}}">
+        </div>
+        <div class="form-group">
+            <label for="password2">비밀번호 확인:</label>
+            <input type="password" class="form-control" id="password2" placeholder="Enter password" name="password2"
+                value="{{forms.password2.value|default_if_none:''}}">
+        </div>
+        <div class="form-group">
+            <label for="email">이메일:</label>
+            <input type="text" class="form-control" id="email" placeholder="Enter email" name="email"
+                value="{{forms.email.value|default_if_none:''}}">
+            <br />
+            <button type="submit" class="btn btn-primary">회원가입</button>
+    </form>
+</div>
+
+
+
+
+{% endblock %}

@@ -1,19 +1,30 @@
-from csv import field_size_limit
 import math
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import redirect, render
 from django.views.decorators.csrf import csrf_exempt
 from django.core.paginator import Paginator
 
+from .forms import UserForm
+from django.contrib.auth import authenticate, login
+
 from django.db.models import Q
 import urllib.parse
 
 from sympy import content
 
-from myapp02.models import Board, Comment
+from myapp03.models import Board, Comment
+from myapp03 import bigdataProcess
 
 # Create your views here.
 UPLOAD_DIR = 'C:\\djangostudy\\upload\\'
+
+
+def melon(request):
+    bigdataProcess.melon_crawing()
+    return render(request, 'bigdata/melon.html', {'List': bigdataProcess.melon_crawing()})
+
+
+##################################################
 
 
 def index(request):
@@ -248,3 +259,30 @@ def comment_insert(request):
                   content=request.POST['content'])
     dto.save()
     return redirect("/detail/"+id)
+
+#####################################################
+
+# 회원가입
+
+
+@csrf_exempt
+def signup(request):
+    if request.method == "POST":  # 회원가입 insert
+        form = UserForm(request.POST)
+        if form.is_valid():
+            print('signup POST un_valid')
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+
+            login(request, user)
+            return redirect('/')
+
+        else:
+            print('signup POST un_valid')
+
+    else:  # 회원가입 폼으로
+        form = UserForm()
+
+    return render(request, 'common/signup.html', {'form': form})
