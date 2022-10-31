@@ -1,4 +1,4 @@
-"""myproject03 URL Configuration
+"""myProject03 URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.1/topics/http/urls/
@@ -15,40 +15,30 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from django.contrib.auth import views as auth_views
-
 from myapp03 import views
-
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", views.list_page),
+    path('', views.index),
+    path('base/', views.index),
     path('write_form/', views.write_form),
     path('insert/', views.insert),
-
     path('list/', views.list),
-    path('list_page/', views.list_page),
-
-    path('download_count/', views.download_count),
+    path('delete/<int:board_idx>/', views.delete),
+    path('delete/<int:writer_idx>/', views.delete),
+    path('update/<int:board_idx>/', views.update),
+    path('update_now/', views.update_now),
+    path('detail/<int:board_idx>/', views.detail),
+    path('download_count', views.download_count),
     path('download/', views.download),
-
-    path('detail_id/', views.detail_id),
-    path('detail/<int:board_id>/', views.detail),
-
-    path('update_form/<int:board_id>/', views.update_form),
-    path('update/', views.update),
-
-    path('delete/<int:board_id>', views.delete),
-
     path('comment_insert/', views.comment_insert),
-
-    ###############################
     path('signup/', views.signup),
-
     path('login/', auth_views.LoginView.as_view(template_name='common/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
-
-    ###############################
-    path("melon/", views.melon),
-
+    path('melon/', views.melon),
+    path('weather/', views.weather),
+    path('map/', views.map),
+    path('wordcloud/', views.wordcloud),
+    path('attendance/', views.attendance),
 ]

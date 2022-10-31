@@ -3,32 +3,25 @@
 {% block content %}
 <div class="container">
     <h2>Insert</h2>
-    <form action="/update/" method="post" enctype="multipart/form-data">
-        <input type="hidden" name="id" value="{{dto.id}}" />
-        <div class="form-group">
-            <label for="writer">writer:</label>
-            <input type="text" class="form-control" id="writer" placeholder="Enter writer" name="writer"
-                value="{{dto.writer}}">
-        </div>
-        <div class="form-group">
-            <label for="title">title:</label>
-            <input type="title" class="form-control" id="title" placeholder="Enter title" name="title"
-                value="{{dto.title}}">
-        </div>
-        <div class="form-group">
-            <label for="content">content:</label>
-            <textarea class="form-control" id="content" rows="5" placeholder="Enter title"
-                name="content">{{dto.content}}</textarea>
-        </div>
-        <div class="form-group">
-            <label for="file">file:</label>
-            <input type="file" class="form-control" id="file" placeholder="Enter file" name="file">{{dto.filename}}
-            <br />
-            <button type="submit" class="btn btn-primary">수정하기</button>
+    <form action="/update_now/" method="post" enctype="multipart/form-data">
+      <div class="form-group">
+        <input type="hidden" name="idx" value="{{dto.idx}}">
+        <label for="writer">writer</label>
+        <input type="text" class="form-control" id="writer" placeholder="Enter writer" name="writer" value="{{dto.writer}}">
+      </div>
+      <div class="form-group">
+        <label for="text">title</label>
+        <input type="text" class="form-control" id="title" placeholder="Enter title" name="title" value="{{dto.writer}}">
+      </div>
+      <div class="form-group">
+        <label for="text">content</label>
+        <textarea class="form-control" rows="5" id="content" placeholder="Enter content" name="content">{{dto.content}}</textarea>
+      </div>
+      <div class="form-group">
+        <label for="text">file</label>
+        <input type="file" class="form-control" id="file" placeholder="Enter file" name="file">{{dto.filename}}<br/>
+      <button type="submit" class="btn btn-primary">글쓰기</button>
     </form>
-</div>
-
-
-
-
+  </div>
+  
 {% endblock %}

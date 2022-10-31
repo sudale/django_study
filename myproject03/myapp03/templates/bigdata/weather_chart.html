@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+  <h1>weather</h1>
+  <div class="d-flex flex-row bd-highlight mb-3">
+    <img src="{% get_static_prefix %}images/{{img_data.plot}}" width="400" height="300">
+    <img src="{% get_static_prefix %}images/{{img_data.bar}}" width="400" height="300">
+    <img src="{% get_static_prefix %}images/{{img_data.pie}}" width="400" height="300">
+  </div>
+  <table class="table">
+    <tr class="table-warning">
+      <th>지역</th>
+      <th>날짜</th>
+      <th>날씨</th>
+      <th>최소기온</th>
+      <th>최고기온</th>
+    </tr>
+    </thead>
+    <tbody>
+      {% for data in weather_data %}
+      <tr>
+        <td>{{data.city}}</td>
+        <td>{{data.tmef}}</td>
+        <td>{{data.wf}}</td>
+        <td>{{data.tmn}}</td>
+        <td>{{data.tmx}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
